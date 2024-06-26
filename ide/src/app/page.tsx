@@ -1,9 +1,9 @@
-
+import CodeEditor from "./components/CodeEditor/CodeEditor";
 
 export default function Home() {
   return (
     <main>
-        <p>Home</p>
+        <CodeEditor></CodeEditor>
     </main>
   );
 }
