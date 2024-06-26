@@ -1,4 +1,6 @@
 from flask import Flask , Blueprint, json, jsonify, request
+from parser import parse_expression
+from code_generator import CodeGenerator
 
 app = Flask(__name__)
 
@@ -8,10 +10,11 @@ def home():
 
 @app.route("/compile", methods=["POST"])
 def compile():
+
     data = request.json
-
-    processed_data = {"message": "the code have been received", "data": data}
-
+    code_generator = CodeGenerator(parse_expression(data.get("code")))
+    js_code = code_generator.generate_code()
+    processed_data = {"ok":True, "output": js_code}
     return jsonify(processed_data)
 
 @app.route("/save",methods=["POST"])

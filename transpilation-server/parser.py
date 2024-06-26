@@ -6,7 +6,7 @@ def p_program(p):
                | stm
     """
     if len(p) == 3:
-        p[0] = [p[1]] + p[2]
+        p[0] = p[1] + p[2]
     else:
         p[0] = p[1]
 
@@ -32,7 +32,7 @@ def p_expression(p):
                   | value
     """
     if len(p) == 4:
-        p[0] = ((str(p[1]) + str(p[2]) + str(p[3])))
+        p[0] = (str(p[1]) + str(p[2]) + str(p[3]))
     elif len(p) == 3:
         p[0] = (str(p[2]) + str(p[3]))
     else:
@@ -52,6 +52,7 @@ def p_assignation(p):
     """
         assignation : DEFINITION ID ASSIGN value
                     | DEFINITION ID ASSIGN expression
+                    | DEFINITION ID ASSIGN generator
     """
 
     p[0] = ('assignation', p[2], p[4])
@@ -66,6 +67,11 @@ def p_value(p):
     p[0] = p[1]
 
 
+def p_generator(p):
+    """generator : GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA expression RIGTHPH FOR ID"""
+    p[0] = ('generator', p[3], p[5], p[7], p[10])
+
+
 def p_error(p):
     print("Syntax error at column", p.lineno, "pos:", p.lexpos)
 
@@ -74,3 +80,6 @@ parser = yacc.yacc()
 def parse_expression(input_string):
     result = parser.parse(input_string)
     return result
+
+
+

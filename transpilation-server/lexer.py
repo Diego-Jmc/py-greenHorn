@@ -10,12 +10,15 @@ tokens = [
     'ID',
     'ASSIGN',
     'LEFTPH',
-    'RIGTHPH'
+    'RIGTHPH',
+    'COMMA'
 ]
 
 reserved = {
     'def': 'DEFINITION',
     'print': 'PRINT',
+    'gen': 'GENERATOR',
+    'for': 'FOR'
 }
 
 tokens += reserved.values()
@@ -29,6 +32,7 @@ t_DIVIDE = r'/'
 t_ASSIGN = r'\->'
 t_LEFTPH = r'\('
 t_RIGTHPH = r'\)'
+t_COMMA = r','
 t_ignore = ' \t\n'
 
 

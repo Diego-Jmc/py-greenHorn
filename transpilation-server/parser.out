@@ -1,0 +1,715 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> stm program
+Rule 2     program -> stm
+Rule 3     stm -> print
+Rule 4     stm -> assignation
+Rule 5     stm -> expression
+Rule 6     print -> PRINT LEFTPH expression RIGTHPH
+Rule 7     print -> PRINT LEFTPH value RIGTHPH
+Rule 8     expression -> expression operator expression
+Rule 9     expression -> value operator value
+Rule 10    expression -> value
+Rule 11    operator -> PLUS
+Rule 12    operator -> MINUS
+Rule 13    operator -> TIMES
+Rule 14    operator -> DIVIDE
+Rule 15    assignation -> DEFINITION ID ASSIGN value
+Rule 16    assignation -> DEFINITION ID ASSIGN expression
+Rule 17    assignation -> DEFINITION ID ASSIGN generator
+Rule 18    value -> NUMBER
+Rule 19    value -> STRING
+Rule 20    value -> ID
+Rule 21    generator -> GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA expression RIGTHPH FOR ID
+
+Terminals, with rules where they appear
+
+ASSIGN               : 15 16 17
+COMMA                : 21 21
+DEFINITION           : 15 16 17
+DIVIDE               : 14
+FOR                  : 21
+GENERATOR            : 21
+ID                   : 15 16 17 20 21
+LEFTPH               : 6 7 21
+MINUS                : 12
+NUMBER               : 18 21 21
+PLUS                 : 11
+PRINT                : 6 7
+RIGTHPH              : 6 7 21
+STRING               : 19
+TIMES                : 13
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignation          : 4
+expression           : 5 6 8 8 16 21
+generator            : 17
+operator             : 8 9
+print                : 3
+program              : 1 0
+stm                  : 1 2
+value                : 7 9 9 10 15
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . stm program
+    (2) program -> . stm
+    (3) stm -> . print
+    (4) stm -> . assignation
+    (5) stm -> . expression
+    (6) print -> . PRINT LEFTPH expression RIGTHPH
+    (7) print -> . PRINT LEFTPH value RIGTHPH
+    (15) assignation -> . DEFINITION ID ASSIGN value
+    (16) assignation -> . DEFINITION ID ASSIGN expression
+    (17) assignation -> . DEFINITION ID ASSIGN generator
+    (8) expression -> . expression operator expression
+    (9) expression -> . value operator value
+    (10) expression -> . value
+    (18) value -> . NUMBER
+    (19) value -> . STRING
+    (20) value -> . ID
+
+    PRINT           shift and go to state 6
+    DEFINITION      shift and go to state 8
+    NUMBER          shift and go to state 10
+    STRING          shift and go to state 11
+    ID              shift and go to state 9
+
+    program                        shift and go to state 1
+    stm                            shift and go to state 2
+    print                          shift and go to state 3
+    assignation                    shift and go to state 4
+    expression                     shift and go to state 5
+    value                          shift and go to state 7
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> stm . program
+    (2) program -> stm .
+    (1) program -> . stm program
+    (2) program -> . stm
+    (3) stm -> . print
+    (4) stm -> . assignation
+    (5) stm -> . expression
+    (6) print -> . PRINT LEFTPH expression RIGTHPH
+    (7) print -> . PRINT LEFTPH value RIGTHPH
+    (15) assignation -> . DEFINITION ID ASSIGN value
+    (16) assignation -> . DEFINITION ID ASSIGN expression
+    (17) assignation -> . DEFINITION ID ASSIGN generator
+    (8) expression -> . expression operator expression
+    (9) expression -> . value operator value
+    (10) expression -> . value
+    (18) value -> . NUMBER
+    (19) value -> . STRING
+    (20) value -> . ID
+
+    $end            reduce using rule 2 (program -> stm .)
+    PRINT           shift and go to state 6
+    DEFINITION      shift and go to state 8
+    NUMBER          shift and go to state 10
+    STRING          shift and go to state 11
+    ID              shift and go to state 9
+
+    stm                            shift and go to state 2
+    program                        shift and go to state 12
+    print                          shift and go to state 3
+    assignation                    shift and go to state 4
+    expression                     shift and go to state 5
+    value                          shift and go to state 7
+
+state 3
+
+    (3) stm -> print .
+
+    PRINT           reduce using rule 3 (stm -> print .)
+    DEFINITION      reduce using rule 3 (stm -> print .)
+    NUMBER          reduce using rule 3 (stm -> print .)
+    STRING          reduce using rule 3 (stm -> print .)
+    ID              reduce using rule 3 (stm -> print .)
+    $end            reduce using rule 3 (stm -> print .)
+
+
+state 4
+
+    (4) stm -> assignation .
+
+    PRINT           reduce using rule 4 (stm -> assignation .)
+    DEFINITION      reduce using rule 4 (stm -> assignation .)
+    NUMBER          reduce using rule 4 (stm -> assignation .)
+    STRING          reduce using rule 4 (stm -> assignation .)
+    ID              reduce using rule 4 (stm -> assignation .)
+    $end            reduce using rule 4 (stm -> assignation .)
+
+
+state 5
+
+    (5) stm -> expression .
+    (8) expression -> expression . operator expression
+    (11) operator -> . PLUS
+    (12) operator -> . MINUS
+    (13) operator -> . TIMES
+    (14) operator -> . DIVIDE
+
+    PRINT           reduce using rule 5 (stm -> expression .)
+    DEFINITION      reduce using rule 5 (stm -> expression .)
+    NUMBER          reduce using rule 5 (stm -> expression .)
+    STRING          reduce using rule 5 (stm -> expression .)
+    ID              reduce using rule 5 (stm -> expression .)
+    $end            reduce using rule 5 (stm -> expression .)
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 17
+
+    operator                       shift and go to state 13
+
+state 6
+
+    (6) print -> PRINT . LEFTPH expression RIGTHPH
+    (7) print -> PRINT . LEFTPH value RIGTHPH
+
+    LEFTPH          shift and go to state 18
+
+
+state 7
+
+    (9) expression -> value . operator value
+    (10) expression -> value .
+    (11) operator -> . PLUS
+    (12) operator -> . MINUS
+    (13) operator -> . TIMES
+    (14) operator -> . DIVIDE
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    PRINT           reduce using rule 10 (expression -> value .)
+    DEFINITION      reduce using rule 10 (expression -> value .)
+    NUMBER          reduce using rule 10 (expression -> value .)
+    STRING          reduce using rule 10 (expression -> value .)
+    ID              reduce using rule 10 (expression -> value .)
+    $end            reduce using rule 10 (expression -> value .)
+    RIGTHPH         reduce using rule 10 (expression -> value .)
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 17
+
+  ! PLUS            [ reduce using rule 10 (expression -> value .) ]
+  ! MINUS           [ reduce using rule 10 (expression -> value .) ]
+  ! TIMES           [ reduce using rule 10 (expression -> value .) ]
+  ! DIVIDE          [ reduce using rule 10 (expression -> value .) ]
+
+    operator                       shift and go to state 19
+
+state 8
+
+    (15) assignation -> DEFINITION . ID ASSIGN value
+    (16) assignation -> DEFINITION . ID ASSIGN expression
+    (17) assignation -> DEFINITION . ID ASSIGN generator
+
+    ID              shift and go to state 20
+
+
+state 9
+
+    (20) value -> ID .
+
+    PLUS            reduce using rule 20 (value -> ID .)
+    MINUS           reduce using rule 20 (value -> ID .)
+    TIMES           reduce using rule 20 (value -> ID .)
+    DIVIDE          reduce using rule 20 (value -> ID .)
+    PRINT           reduce using rule 20 (value -> ID .)
+    DEFINITION      reduce using rule 20 (value -> ID .)
+    NUMBER          reduce using rule 20 (value -> ID .)
+    STRING          reduce using rule 20 (value -> ID .)
+    ID              reduce using rule 20 (value -> ID .)
+    $end            reduce using rule 20 (value -> ID .)
+    RIGTHPH         reduce using rule 20 (value -> ID .)
+
+
+state 10
+
+    (18) value -> NUMBER .
+
+    PLUS            reduce using rule 18 (value -> NUMBER .)
+    MINUS           reduce using rule 18 (value -> NUMBER .)
+    TIMES           reduce using rule 18 (value -> NUMBER .)
+    DIVIDE          reduce using rule 18 (value -> NUMBER .)
+    PRINT           reduce using rule 18 (value -> NUMBER .)
+    DEFINITION      reduce using rule 18 (value -> NUMBER .)
+    NUMBER          reduce using rule 18 (value -> NUMBER .)
+    STRING          reduce using rule 18 (value -> NUMBER .)
+    ID              reduce using rule 18 (value -> NUMBER .)
+    $end            reduce using rule 18 (value -> NUMBER .)
+    RIGTHPH         reduce using rule 18 (value -> NUMBER .)
+
+
+state 11
+
+    (19) value -> STRING .
+
+    PLUS            reduce using rule 19 (value -> STRING .)
+    MINUS           reduce using rule 19 (value -> STRING .)
+    TIMES           reduce using rule 19 (value -> STRING .)
+    DIVIDE          reduce using rule 19 (value -> STRING .)
+    PRINT           reduce using rule 19 (value -> STRING .)
+    DEFINITION      reduce using rule 19 (value -> STRING .)
+    NUMBER          reduce using rule 19 (value -> STRING .)
+    STRING          reduce using rule 19 (value -> STRING .)
+    ID              reduce using rule 19 (value -> STRING .)
+    $end            reduce using rule 19 (value -> STRING .)
+    RIGTHPH         reduce using rule 19 (value -> STRING .)
+
+
+state 12
+
+    (1) program -> stm program .
+
+    $end            reduce using rule 1 (program -> stm program .)
+
+
+state 13
+
+    (8) expression -> expression operator . expression
+    (8) expression -> . expression operator expression
+    (9) expression -> . value operator value
+    (10) expression -> . value
+    (18) value -> . NUMBER
+    (19) value -> . STRING
+    (20) value -> . ID
+
+    NUMBER          shift and go to state 10
+    STRING          shift and go to state 11
+    ID              shift and go to state 9
+
+    expression                     shift and go to state 21
+    value                          shift and go to state 7
+
+state 14
+
+    (11) operator -> PLUS .
+
+    NUMBER          reduce using rule 11 (operator -> PLUS .)
+    STRING          reduce using rule 11 (operator -> PLUS .)
+    ID              reduce using rule 11 (operator -> PLUS .)
+
+
+state 15
+
+    (12) operator -> MINUS .
+
+    NUMBER          reduce using rule 12 (operator -> MINUS .)
+    STRING          reduce using rule 12 (operator -> MINUS .)
+    ID              reduce using rule 12 (operator -> MINUS .)
+
+
+state 16
+
+    (13) operator -> TIMES .
+
+    NUMBER          reduce using rule 13 (operator -> TIMES .)
+    STRING          reduce using rule 13 (operator -> TIMES .)
+    ID              reduce using rule 13 (operator -> TIMES .)
+
+
+state 17
+
+    (14) operator -> DIVIDE .
+
+    NUMBER          reduce using rule 14 (operator -> DIVIDE .)
+    STRING          reduce using rule 14 (operator -> DIVIDE .)
+    ID              reduce using rule 14 (operator -> DIVIDE .)
+
+
+state 18
+
+    (6) print -> PRINT LEFTPH . expression RIGTHPH
+    (7) print -> PRINT LEFTPH . value RIGTHPH
+    (8) expression -> . expression operator expression
+    (9) expression -> . value operator value
+    (10) expression -> . value
+    (18) value -> . NUMBER
+    (19) value -> . STRING
+    (20) value -> . ID
+
+    NUMBER          shift and go to state 10
+    STRING          shift and go to state 11
+    ID              shift and go to state 9
+
+    expression                     shift and go to state 22
+    value                          shift and go to state 23
+
+state 19
+
+    (9) expression -> value operator . value
+    (18) value -> . NUMBER
+    (19) value -> . STRING
+    (20) value -> . ID
+
+    NUMBER          shift and go to state 10
+    STRING          shift and go to state 11
+    ID              shift and go to state 9
+
+    value                          shift and go to state 24
+
+state 20
+
+    (15) assignation -> DEFINITION ID . ASSIGN value
+    (16) assignation -> DEFINITION ID . ASSIGN expression
+    (17) assignation -> DEFINITION ID . ASSIGN generator
+
+    ASSIGN          shift and go to state 25
+
+
+state 21
+
+    (8) expression -> expression operator expression .
+    (8) expression -> expression . operator expression
+    (11) operator -> . PLUS
+    (12) operator -> . MINUS
+    (13) operator -> . TIMES
+    (14) operator -> . DIVIDE
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    PRINT           reduce using rule 8 (expression -> expression operator expression .)
+    DEFINITION      reduce using rule 8 (expression -> expression operator expression .)
+    NUMBER          reduce using rule 8 (expression -> expression operator expression .)
+    STRING          reduce using rule 8 (expression -> expression operator expression .)
+    ID              reduce using rule 8 (expression -> expression operator expression .)
+    $end            reduce using rule 8 (expression -> expression operator expression .)
+    RIGTHPH         reduce using rule 8 (expression -> expression operator expression .)
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 17
+
+  ! PLUS            [ reduce using rule 8 (expression -> expression operator expression .) ]
+  ! MINUS           [ reduce using rule 8 (expression -> expression operator expression .) ]
+  ! TIMES           [ reduce using rule 8 (expression -> expression operator expression .) ]
+  ! DIVIDE          [ reduce using rule 8 (expression -> expression operator expression .) ]
+
+    operator                       shift and go to state 13
+
+state 22
+
+    (6) print -> PRINT LEFTPH expression . RIGTHPH
+    (8) expression -> expression . operator expression
+    (11) operator -> . PLUS
+    (12) operator -> . MINUS
+    (13) operator -> . TIMES
+    (14) operator -> . DIVIDE
+
+    RIGTHPH         shift and go to state 26
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 17
+
+    operator                       shift and go to state 13
+
+state 23
+
+    (7) print -> PRINT LEFTPH value . RIGTHPH
+    (9) expression -> value . operator value
+    (10) expression -> value .
+    (11) operator -> . PLUS
+    (12) operator -> . MINUS
+    (13) operator -> . TIMES
+    (14) operator -> . DIVIDE
+
+  ! shift/reduce conflict for RIGTHPH resolved as shift
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    RIGTHPH         shift and go to state 27
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 17
+
+  ! RIGTHPH         [ reduce using rule 10 (expression -> value .) ]
+  ! PLUS            [ reduce using rule 10 (expression -> value .) ]
+  ! MINUS           [ reduce using rule 10 (expression -> value .) ]
+  ! TIMES           [ reduce using rule 10 (expression -> value .) ]
+  ! DIVIDE          [ reduce using rule 10 (expression -> value .) ]
+
+    operator                       shift and go to state 19
+
+state 24
+
+    (9) expression -> value operator value .
+
+    PLUS            reduce using rule 9 (expression -> value operator value .)
+    MINUS           reduce using rule 9 (expression -> value operator value .)
+    TIMES           reduce using rule 9 (expression -> value operator value .)
+    DIVIDE          reduce using rule 9 (expression -> value operator value .)
+    PRINT           reduce using rule 9 (expression -> value operator value .)
+    DEFINITION      reduce using rule 9 (expression -> value operator value .)
+    NUMBER          reduce using rule 9 (expression -> value operator value .)
+    STRING          reduce using rule 9 (expression -> value operator value .)
+    ID              reduce using rule 9 (expression -> value operator value .)
+    $end            reduce using rule 9 (expression -> value operator value .)
+    RIGTHPH         reduce using rule 9 (expression -> value operator value .)
+
+
+state 25
+
+    (15) assignation -> DEFINITION ID ASSIGN . value
+    (16) assignation -> DEFINITION ID ASSIGN . expression
+    (17) assignation -> DEFINITION ID ASSIGN . generator
+    (18) value -> . NUMBER
+    (19) value -> . STRING
+    (20) value -> . ID
+    (8) expression -> . expression operator expression
+    (9) expression -> . value operator value
+    (10) expression -> . value
+    (21) generator -> . GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA expression RIGTHPH FOR ID
+
+    NUMBER          shift and go to state 10
+    STRING          shift and go to state 11
+    ID              shift and go to state 9
+    GENERATOR       shift and go to state 31
+
+    value                          shift and go to state 28
+    expression                     shift and go to state 29
+    generator                      shift and go to state 30
+
+state 26
+
+    (6) print -> PRINT LEFTPH expression RIGTHPH .
+
+    PRINT           reduce using rule 6 (print -> PRINT LEFTPH expression RIGTHPH .)
+    DEFINITION      reduce using rule 6 (print -> PRINT LEFTPH expression RIGTHPH .)
+    NUMBER          reduce using rule 6 (print -> PRINT LEFTPH expression RIGTHPH .)
+    STRING          reduce using rule 6 (print -> PRINT LEFTPH expression RIGTHPH .)
+    ID              reduce using rule 6 (print -> PRINT LEFTPH expression RIGTHPH .)
+    $end            reduce using rule 6 (print -> PRINT LEFTPH expression RIGTHPH .)
+
+
+state 27
+
+    (7) print -> PRINT LEFTPH value RIGTHPH .
+
+    PRINT           reduce using rule 7 (print -> PRINT LEFTPH value RIGTHPH .)
+    DEFINITION      reduce using rule 7 (print -> PRINT LEFTPH value RIGTHPH .)
+    NUMBER          reduce using rule 7 (print -> PRINT LEFTPH value RIGTHPH .)
+    STRING          reduce using rule 7 (print -> PRINT LEFTPH value RIGTHPH .)
+    ID              reduce using rule 7 (print -> PRINT LEFTPH value RIGTHPH .)
+    $end            reduce using rule 7 (print -> PRINT LEFTPH value RIGTHPH .)
+
+
+state 28
+
+    (15) assignation -> DEFINITION ID ASSIGN value .
+    (9) expression -> value . operator value
+    (10) expression -> value .
+    (11) operator -> . PLUS
+    (12) operator -> . MINUS
+    (13) operator -> . TIMES
+    (14) operator -> . DIVIDE
+
+  ! reduce/reduce conflict for PRINT resolved using rule 10 (expression -> value .)
+  ! reduce/reduce conflict for DEFINITION resolved using rule 10 (expression -> value .)
+  ! reduce/reduce conflict for NUMBER resolved using rule 10 (expression -> value .)
+  ! reduce/reduce conflict for STRING resolved using rule 10 (expression -> value .)
+  ! reduce/reduce conflict for ID resolved using rule 10 (expression -> value .)
+  ! reduce/reduce conflict for $end resolved using rule 10 (expression -> value .)
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for MINUS resolved as shift
+  ! shift/reduce conflict for TIMES resolved as shift
+  ! shift/reduce conflict for DIVIDE resolved as shift
+    PRINT           reduce using rule 10 (expression -> value .)
+    DEFINITION      reduce using rule 10 (expression -> value .)
+    NUMBER          reduce using rule 10 (expression -> value .)
+    STRING          reduce using rule 10 (expression -> value .)
+    ID              reduce using rule 10 (expression -> value .)
+    $end            reduce using rule 10 (expression -> value .)
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 17
+
+  ! PRINT           [ reduce using rule 15 (assignation -> DEFINITION ID ASSIGN value .) ]
+  ! DEFINITION      [ reduce using rule 15 (assignation -> DEFINITION ID ASSIGN value .) ]
+  ! NUMBER          [ reduce using rule 15 (assignation -> DEFINITION ID ASSIGN value .) ]
+  ! STRING          [ reduce using rule 15 (assignation -> DEFINITION ID ASSIGN value .) ]
+  ! ID              [ reduce using rule 15 (assignation -> DEFINITION ID ASSIGN value .) ]
+  ! $end            [ reduce using rule 15 (assignation -> DEFINITION ID ASSIGN value .) ]
+  ! PLUS            [ reduce using rule 10 (expression -> value .) ]
+  ! MINUS           [ reduce using rule 10 (expression -> value .) ]
+  ! TIMES           [ reduce using rule 10 (expression -> value .) ]
+  ! DIVIDE          [ reduce using rule 10 (expression -> value .) ]
+
+    operator                       shift and go to state 19
+
+state 29
+
+    (16) assignation -> DEFINITION ID ASSIGN expression .
+    (8) expression -> expression . operator expression
+    (11) operator -> . PLUS
+    (12) operator -> . MINUS
+    (13) operator -> . TIMES
+    (14) operator -> . DIVIDE
+
+    PRINT           reduce using rule 16 (assignation -> DEFINITION ID ASSIGN expression .)
+    DEFINITION      reduce using rule 16 (assignation -> DEFINITION ID ASSIGN expression .)
+    NUMBER          reduce using rule 16 (assignation -> DEFINITION ID ASSIGN expression .)
+    STRING          reduce using rule 16 (assignation -> DEFINITION ID ASSIGN expression .)
+    ID              reduce using rule 16 (assignation -> DEFINITION ID ASSIGN expression .)
+    $end            reduce using rule 16 (assignation -> DEFINITION ID ASSIGN expression .)
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 17
+
+    operator                       shift and go to state 13
+
+state 30
+
+    (17) assignation -> DEFINITION ID ASSIGN generator .
+
+    PRINT           reduce using rule 17 (assignation -> DEFINITION ID ASSIGN generator .)
+    DEFINITION      reduce using rule 17 (assignation -> DEFINITION ID ASSIGN generator .)
+    NUMBER          reduce using rule 17 (assignation -> DEFINITION ID ASSIGN generator .)
+    STRING          reduce using rule 17 (assignation -> DEFINITION ID ASSIGN generator .)
+    ID              reduce using rule 17 (assignation -> DEFINITION ID ASSIGN generator .)
+    $end            reduce using rule 17 (assignation -> DEFINITION ID ASSIGN generator .)
+
+
+state 31
+
+    (21) generator -> GENERATOR . LEFTPH NUMBER COMMA NUMBER COMMA expression RIGTHPH FOR ID
+
+    LEFTPH          shift and go to state 32
+
+
+state 32
+
+    (21) generator -> GENERATOR LEFTPH . NUMBER COMMA NUMBER COMMA expression RIGTHPH FOR ID
+
+    NUMBER          shift and go to state 33
+
+
+state 33
+
+    (21) generator -> GENERATOR LEFTPH NUMBER . COMMA NUMBER COMMA expression RIGTHPH FOR ID
+
+    COMMA           shift and go to state 34
+
+
+state 34
+
+    (21) generator -> GENERATOR LEFTPH NUMBER COMMA . NUMBER COMMA expression RIGTHPH FOR ID
+
+    NUMBER          shift and go to state 35
+
+
+state 35
+
+    (21) generator -> GENERATOR LEFTPH NUMBER COMMA NUMBER . COMMA expression RIGTHPH FOR ID
+
+    COMMA           shift and go to state 36
+
+
+state 36
+
+    (21) generator -> GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA . expression RIGTHPH FOR ID
+    (8) expression -> . expression operator expression
+    (9) expression -> . value operator value
+    (10) expression -> . value
+    (18) value -> . NUMBER
+    (19) value -> . STRING
+    (20) value -> . ID
+
+    NUMBER          shift and go to state 10
+    STRING          shift and go to state 11
+    ID              shift and go to state 9
+
+    expression                     shift and go to state 37
+    value                          shift and go to state 7
+
+state 37
+
+    (21) generator -> GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA expression . RIGTHPH FOR ID
+    (8) expression -> expression . operator expression
+    (11) operator -> . PLUS
+    (12) operator -> . MINUS
+    (13) operator -> . TIMES
+    (14) operator -> . DIVIDE
+
+    RIGTHPH         shift and go to state 38
+    PLUS            shift and go to state 14
+    MINUS           shift and go to state 15
+    TIMES           shift and go to state 16
+    DIVIDE          shift and go to state 17
+
+    operator                       shift and go to state 13
+
+state 38
+
+    (21) generator -> GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA expression RIGTHPH . FOR ID
+
+    FOR             shift and go to state 39
+
+
+state 39
+
+    (21) generator -> GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA expression RIGTHPH FOR . ID
+
+    ID              shift and go to state 40
+
+
+state 40
+
+    (21) generator -> GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA expression RIGTHPH FOR ID .
+
+    PRINT           reduce using rule 21 (generator -> GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA expression RIGTHPH FOR ID .)
+    DEFINITION      reduce using rule 21 (generator -> GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA expression RIGTHPH FOR ID .)
+    NUMBER          reduce using rule 21 (generator -> GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA expression RIGTHPH FOR ID .)
+    STRING          reduce using rule 21 (generator -> GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA expression RIGTHPH FOR ID .)
+    ID              reduce using rule 21 (generator -> GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA expression RIGTHPH FOR ID .)
+    $end            reduce using rule 21 (generator -> GENERATOR LEFTPH NUMBER COMMA NUMBER COMMA expression RIGTHPH FOR ID .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PLUS in state 7 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 7 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 7 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 7 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 21 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 21 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 21 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 21 resolved as shift
+WARNING: shift/reduce conflict for RIGTHPH in state 23 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 23 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 23 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 23 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 23 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 28 resolved as shift
+WARNING: shift/reduce conflict for MINUS in state 28 resolved as shift
+WARNING: shift/reduce conflict for TIMES in state 28 resolved as shift
+WARNING: shift/reduce conflict for DIVIDE in state 28 resolved as shift
+WARNING: reduce/reduce conflict in state 28 resolved using rule (expression -> value)
+WARNING: rejected rule (assignation -> DEFINITION ID ASSIGN value) in state 28
+WARNING: Rule (assignation -> DEFINITION ID ASSIGN value) is never reduced
