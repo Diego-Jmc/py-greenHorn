@@ -1,9 +1,6 @@
 from flask import Flask , Blueprint, json, jsonify, request
 
-
 app = Flask(__name__)
-
-
 
 @app.route("/")
 def home():
