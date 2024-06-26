@@ -1,6 +1,7 @@
 import ply.yacc as yacc
 from lexer import tokens
 
+
 def p_program(p):
     """program : stm program
                | stm
@@ -75,11 +76,10 @@ def p_generator(p):
 def p_error(p):
     print("Syntax error at column", p.lineno, "pos:", p.lexpos)
 
+
 parser = yacc.yacc()
+
 
 def parse_expression(input_string):
     result = parser.parse(input_string)
     return result
-
-
-
