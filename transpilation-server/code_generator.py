@@ -39,12 +39,15 @@ class CodeGenerator:
     def generate_code(self):
 
         js_code = ""
+        try:
+            for node in self.greenHorn_ast:
 
-        for node in self.greenHorn_ast:
+                if node[0] == "assignation":
+                    js_code += self.gen_vardef(node)
+                if node[0] == "print":
+                    js_code += self.gen_print(node)
 
-            if node[0] == "assignation":
-                js_code += self.gen_vardef(node)
-            if node[0] == "print":
-                js_code += self.gen_print(node)
+        except Exception as e:
+            js_code += str(e)
 
         return js_code

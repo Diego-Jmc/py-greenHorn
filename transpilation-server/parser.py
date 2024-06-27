@@ -74,12 +74,15 @@ def p_generator(p):
 
 
 def p_error(p):
-    print("Syntax error at column", p.lineno, "pos:", p.lexpos)
+    raise SyntaxError(f'Syntax error at pos {p.lexpos}')
 
 
 parser = yacc.yacc()
 
 
 def parse_expression(input_string):
-    result = parser.parse(input_string)
-    return result
+    try:
+        result = parser.parse(input_string)
+        return result
+    except SyntaxError as e:
+        raise SyntaxError(str(e))

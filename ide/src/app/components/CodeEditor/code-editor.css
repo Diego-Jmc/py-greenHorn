@@ -23,6 +23,7 @@
 
 .code-editor{
     display: flex;
+
 }
 
 .code-editor-container{
@@ -128,6 +129,13 @@
     font-size: .7em;
 }
 
+.shell-text-area textarea{
+    width: 100%;
+    resize: none;
+    border: none;
+    height: 500px;
+}
+
 .ide-container{
     width: 100%;
     display: flex;
@@ -154,6 +162,10 @@
     padding: 0 .5rem 0 .5rem;
     cursor: pointer;
     margin:.2rem;
+}
+
+.fail{
+    color: #C80036;
 }
 
 @media screen and (max-width:900px) {
