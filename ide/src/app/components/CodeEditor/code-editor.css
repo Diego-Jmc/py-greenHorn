@@ -89,6 +89,10 @@
     margin:.2rem;
 }
 
+.run-btn:hover{
+    color: #fff;
+    background-color: #059212;
+}
 
 .code-editor-values{
     color: #059212;

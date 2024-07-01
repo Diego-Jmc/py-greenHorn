@@ -7,10 +7,10 @@ const CodeEditor = () => {
 
     const [editorCodeContent, setEditorCodeContent] = useState<string>("");
     const [lineNumberStack, setLineNumberStack] = useState<number[]>([]);
-    const [output,setOutput] = useState<string>("")
-    const [timeNs,setTimeNs] = useState<string>("")
-    const [isOkResponse,setisOkResponse] = useState<boolean>(true)
-    const [keywords,setKeywords] = useState<string[]>()
+    const [output, setOutput] = useState<string>("")
+    const [timeNs, setTimeNs] = useState<string>("")
+    const [isOkResponse, setisOkResponse] = useState<boolean>(true)
+    const [keywords, setKeywords] = useState<string[]>()
 
 
     function countLines(): number {
@@ -27,15 +27,15 @@ const CodeEditor = () => {
         return numberArray;
     }
 
-    function getNumberOfWords():number{
-        return editorCodeContent.split(/\s+/).length -1
+    function getNumberOfWords(): number {
+        return editorCodeContent.split(/\s+/).length - 1
     }
 
-    function getCharCount():number{
+    function getCharCount(): number {
         return editorCodeContent.length
     }
 
-    function handleClearShell(){
+    function handleClearShell() {
         setOutput("")
     }
 
@@ -75,18 +75,17 @@ const CodeEditor = () => {
 
     }
 
-
-    useEffect(()=>{
+    useEffect(() => {
         // retrieve all the keywords from the api 
-        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/keywords`).then(res=>{
-            if(res.status == 200){
-                    setKeywords(res.data);        
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/keywords`).then(res => {
+            if (res.status == 200) {
+                setKeywords(res.data);
             }
-        }).catch(err=>{
-                console.log("Error trying to retreieve the keywords from the api");
+        }).catch(err => {
+            console.log("Error trying to retreieve the keywords from the api");
         })
 
-    },[])
+    }, [])
 
     return (
 
@@ -100,15 +99,15 @@ const CodeEditor = () => {
                     <div className="code-editor-options-bar">
 
 
-                    <div className='code-editor-values'>
-                       <p>words: <span className='scalar'>{getNumberOfWords()}</span></p>
-                       <p>chars: <span className='scalar'>{getCharCount()}</span></p>
-                    </div>
-
-                       
+                        <div className='code-editor-values'>
+                            <p>words: <span className='scalar'>{getNumberOfWords()}</span></p>
+                            <p>chars: <span className='scalar'>{getCharCount()}</span></p>
+                        </div>
 
 
-                        <button onClick={handleRun} className="run-btn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-caret-right-fill top-bar-button-style" viewBox="0 0 16 16">
+
+
+                        <button onClick={handleRun} className="run-btn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-caret-right-fill top-bar-button-style run-logo" viewBox="0 0 16 16">
                             <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
                         </svg>
                             Run
@@ -137,7 +136,6 @@ const CodeEditor = () => {
                             onChange={handleChange} className="code-editor-text-area" spellCheck="false" value={editorCodeContent}></textarea>
                     </div>
 
-
                 </div>
 
                 <div className="shell-container">
@@ -148,7 +146,7 @@ const CodeEditor = () => {
                     </div>
 
                     <div className="shell-text-area">
-                    <textarea className={isOkResponse? "" : "fail"} readOnly={true} defaultValue={output}></textarea>
+                        <textarea className={isOkResponse ? "" : "fail"} readOnly={true} defaultValue={output}></textarea>
 
                         <div>
                             <p className="comp-time">ns: {timeNs}</p>
