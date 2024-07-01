@@ -1,7 +1,8 @@
 "use client"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './code-editor.css'
 import axios from 'axios';
+
 const CodeEditor = () => {
 
     const [editorCodeContent, setEditorCodeContent] = useState<string>("");
@@ -9,7 +10,7 @@ const CodeEditor = () => {
     const [output,setOutput] = useState<string>("")
     const [timeNs,setTimeNs] = useState<string>("")
     const [isOkResponse,setisOkResponse] = useState<boolean>(true)
-
+    const [keywords,setKeywords] = useState<string[]>()
 
     function countLines(): number {
         return (editorCodeContent.match(/\n/g) || []).length;
@@ -25,12 +26,18 @@ const CodeEditor = () => {
         return numberArray;
     }
 
+    function handleClearShell(){
+        setOutput("")
+    }
 
     // Handle Events
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
         setEditorCodeContent(event.target.value);
-        const lines = countLines()
-        setLineNumberStack(numberToArray(lines))
+        const lines = countLines();
+        setLineNumberStack(numberToArray(lines));
+        const splitedText = editorCodeContent.split(/\s+/);
+        console.log(splitedText)
+
     };
 
     const handleClear = (): void => {
@@ -58,6 +65,20 @@ const CodeEditor = () => {
             })
 
     }
+
+
+    useEffect(()=>{
+        // retrieve all the keywords from the api 
+        axios.get(`${process.env.NEXT_PUBLIC_API_URL}/keywords`).then(res=>{
+            if(res.status == 200){
+                    setKeywords(res.data);        
+            }
+        }).catch(err=>{
+                console.log("Error trying to retreieve the keywords from the api");
+        })
+
+        
+    },[])
 
     return (
 
@@ -108,7 +129,6 @@ const CodeEditor = () => {
                                     ))
                                 }
 
-
                             </div>
 
                         </div>
@@ -124,7 +144,7 @@ const CodeEditor = () => {
 
                     <div className="shell-description">
                         <p> Shell</p>
-                        <button className="clear-btn" >Clear</button>
+                        <button onClick={handleClearShell} className="clear-btn" >Clear</button>
                     </div>
 
                     <div className="shell-text-area">

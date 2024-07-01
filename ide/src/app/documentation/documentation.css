@@ -1,0 +1,120 @@
+.information-component-container{
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+}
+
+.code-editor-information{
+    background-color: #17594A;
+    display: flex;
+    align-items: center;
+}
+
+.infomration-image-logo{
+    padding: 2rem;
+}
+
+.information-tittle{
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 4rem;
+}
+
+.information-description{
+    color: #D0C9C0;
+    width: 70%;
+    overflow-y: visible;
+    margin: 1rem 0 1rem 0;
+}
+
+.documentation-button{
+   
+    border: none;
+    padding: .5rem;
+    font-family: 'Roboto Condensed', sans-serif;
+    cursor: pointer;
+    margin-top: 1rem;
+    background-color: #B6F7C1;
+}
+
+.code-editor-info{
+    padding: 2rem;
+}
+
+.personal-information-container{
+    padding: 2rem;
+
+}
+
+
+.infomration-image-logo {
+    width: 100%;
+  
+}
+
+.infomration-image-logo img{
+    width: 100%;
+}
+
+.image-description{
+    font-style: italic;
+    color: #D0C9C0;
+}
+
+.learned-concepts-section{
+    height: 100vh;
+}
+
+@media screen and (max-width:1200px){
+
+    .code-editor-information{
+        flex-direction: column;
+    }
+    
+    .information-tittle{
+        font-size: 5em;
+    }
+
+    .code-editor-info{
+        font-size: .5em;
+    }
+}
+
+
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .variable-section, .generator-section, .print-section {
+    background-color: #ffffff;
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+  }
+  
+  .variable-section h2, .generator-section h2, .print-section h2 {
+    margin-top: 0;
+    color: #333333;
+  }
+  
+  .variable-section ul, .generator-section ul, .print-section ul {
+    list-style-type: none;
+    padding-left: 0;
+  }
+  
+  .variable-section li, .generator-section li, .print-section li {
+    margin-bottom: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #555555;
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
