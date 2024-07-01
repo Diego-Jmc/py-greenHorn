@@ -74,7 +74,11 @@ def p_generator(p):
 
 
 def p_error(p):
-    raise SyntaxError(f'Syntax error at pos {p.lexpos}')
+    if p:
+        raise SyntaxError(f'Syntax error at position {p.lexpos}')
+    else:
+        raise SyntaxError('Syntax error: unexpected end of input')
+
 
 
 parser = yacc.yacc()

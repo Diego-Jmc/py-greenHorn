@@ -23,7 +23,6 @@ def compile():
     try:
         code_generator = CodeGenerator(parse_expression(data.get("code")))
         output = code_generator.generate_code()
-        time.sleep(2)
         ok = True
     except SyntaxError as e:
         output = str(e)
