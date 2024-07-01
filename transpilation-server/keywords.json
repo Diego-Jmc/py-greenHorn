@@ -1,8 +1,8 @@
 [
-    "def",
-    "print",
-    "gen",
-    "for"
+    {"def": "#4C3BCF"},
+    {"print": "#4A249D"},
+    {"gen": "#C65BCF"},
+    {"for": "#4C3BCF"}
 ]
 
 
