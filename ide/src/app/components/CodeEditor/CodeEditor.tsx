@@ -12,6 +12,7 @@ const CodeEditor = () => {
     const [isOkResponse,setisOkResponse] = useState<boolean>(true)
     const [keywords,setKeywords] = useState<string[]>()
 
+
     function countLines(): number {
         return (editorCodeContent.match(/\n/g) || []).length;
     }
@@ -24,6 +25,14 @@ const CodeEditor = () => {
         }
 
         return numberArray;
+    }
+
+    function getNumberOfWords():number{
+        return editorCodeContent.split(/\s+/).length -1
+    }
+
+    function getCharCount():number{
+        return editorCodeContent.length
     }
 
     function handleClearShell(){
@@ -77,7 +86,6 @@ const CodeEditor = () => {
                 console.log("Error trying to retreieve the keywords from the api");
         })
 
-        
     },[])
 
     return (
@@ -88,24 +96,16 @@ const CodeEditor = () => {
             <div className="ide-container">
                 <div className="code-editor-container">
 
+
                     <div className="code-editor-options-bar">
 
-                        <button className="less-size code-editor-option clear-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-dash-lg top-bar-button-style" viewBox="0 0 16 16">
-                                <path fillRule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8Z" />
-                            </svg>
-                        </button>
 
+                    <div className='code-editor-values'>
+                       <p>words: <span className='scalar'>{getNumberOfWords()}</span></p>
+                       <p>chars: <span className='scalar'>{getCharCount()}</span></p>
+                    </div>
 
-                        <button className="more-size code-editor-option clear-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-plus-lg top-bar-button-style" viewBox="0 0 16 16">
-                                <path fillRule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z" />
-                            </svg>
-                        </button>
-
-
-                        <button className="clear-btn">Test code</button>
-                        <button onClick={handleClear} className="clear-btn">Clear</button>
+                       
 
 
                         <button onClick={handleRun} className="run-btn"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" className="bi bi-caret-right-fill top-bar-button-style" viewBox="0 0 16 16">
@@ -151,7 +151,7 @@ const CodeEditor = () => {
                     <textarea className={isOkResponse? "" : "fail"} readOnly={true} defaultValue={output}></textarea>
 
                         <div>
-                            <p className="comp-time">{timeNs}</p>
+                            <p className="comp-time">ns: {timeNs}</p>
                         </div>
                     </div>
 

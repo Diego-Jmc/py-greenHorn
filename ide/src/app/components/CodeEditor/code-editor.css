@@ -90,6 +90,15 @@
 }
 
 
+.code-editor-values{
+    color: #059212;
+    display: flex;
+    align-items: center;
+}
+
+.code-editor-values p{
+    margin: .5rem;
+}
 .top-bar-button-style{
     color: #059212;
 }
